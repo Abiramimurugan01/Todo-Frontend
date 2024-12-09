@@ -1,0 +1,46 @@
+<div class="container ">
+
+
+    <form [formGroup]="signForm" (ngSubmit)="call()" class="form-group border border-dashed p-5 mt-5">
+      <h2 class="mt-5 text-center">Sign Up</h2>
+      <div>
+        <input type="text" placeholder="Enter your name" formControlName="name" class="form-control mt-3" />
+        <div *ngIf="(submitted || formControls['name'].touched) && formControls['name'].invalid" >
+          <small *ngIf="formControls['name'].errors?.['required']">Name is required.</small>
+        </div>
+    
+       
+        <input type="email" placeholder="Enter your email" formControlName="email" class="form-control mt-3" />
+        <div *ngIf="(submitted || formControls['email'].touched) && formControls['email'].invalid" >
+          <small *ngIf="formControls['email'].errors?.['required']">Email is required.</small>
+          <small *ngIf="formControls['email'].errors?.['email']">Enter a valid email.</small>
+        </div>
+    
+        <input type="password" placeholder="Create Password" formControlName="password" class="form-control mt-3" />
+        <div *ngIf="(submitted || formControls['password']?.touched) && formControls['password']?.invalid">
+          <small *ngIf="formControls['password']?.errors?.['required']">Password is required.</small>
+          <small *ngIf="formControls['password']?.errors?.['minlength']">Password must be at least 8 characters long.</small>
+        </div>
+    
+        <input type="password" placeholder="Confirm Password" formControlName="c_password" class="form-control mt-3" />
+      <div *ngIf="(submitted || formControls['c_password']?.touched) && (formControls['c_password']?.invalid || signForm.errors?.['mismatch'])">
+        <small *ngIf="formControls['c_password']?.errors?.['required']">Confirm Password is required.</small>
+        <small *ngIf="signForm.errors?.['mismatch']">Passwords do not match.</small>
+      </div>
+  
+        <button type="submit" [disabled]="!signForm.valid" class="form-control mt-3 bg-primary text-white">
+          Sign Up
+        </button>
+  
+        <p class="text-center mt-3">
+          Already have an account? 
+          <a routerLink="/login">Login</a>
+        </p>
+      </div>
+    </form>
+  </div>
+  
+  
+  
+  
+  
